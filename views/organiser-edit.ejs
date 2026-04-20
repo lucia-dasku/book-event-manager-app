@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add or Edit Event</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+    <%- include('add-ons') %>
+
+        <% const confirmMsg=typeof confirmation !=='undefined' ? confirmation : null; %>
+
+            <h1>Add or Edit Event</h1>
+            <!-- Warning message for editing published events -->
+            <% if (event.status==='published' ) { %>
+                <div class="announce warning">
+                    This event is <strong>already published</strong>. Any changes may affect attendees.
+                </div>
+                <% } %>
+
+                    <p class="page-description">
+                        Use the form below to create or edit event. Write a detailed description, choose a venue, and
+                        add ticket types.
+                        <br>Don’t forget to save changes when you’re done.
+                    </p>
+                    <p><strong>Created At:</strong>
+                        <%= event.created_at %>
+                    </p>
+
+                    <!-- Main event update form -->
+                    <form action="/organiser/edit/<%= event.event_id %>" method="post">
+                        <!-- Saved message-->
+                        <% if (confirmMsg) { %>
+                            <div class="announce success">
+                                <%= confirmMsg %>
+                            </div>
+                            <% } %>
+
+                                <label>Title:</label>
+                                <input type="text" name="title" value="<%= event.title %>" required><br>
+
+                                <label>Description:</label><br>
+                                <textarea name="description"><%= event.description %></textarea><br>
+
+                                <label>Event Date:</label>
+                                <input type="date" name="event_date" value="<%= event.event_date %>" required><br>
+
+                                <label>Venue:</label><br>
+                                <select name="venue_id" required>
+                                    <% venues.forEach(v=> { %>
+                                        <option value="<%= v.venue_id %>" <%=String(event.venue_id)===String(v.venue_id)
+                                            ? 'selected' : '' %>>
+                                            <%= v.name %> (<%= v.city %>)
+                                        </option>
+                                        <% }) %>
+                                </select><br><br>
+
+                                <!-- Added tickets summary -->
+                                <h2>Manage Tickets</h2>
+
+                                <% if (tickets.length> 0) { %>
+                                    <ul>
+                                        <% tickets.forEach(ticket=> { %>
+                                            <li>
+                                                <strong>
+                                                    <%= ticket.type %>
+                                                </strong> —
+                                                <%= ticket.price %> SEK (Available: <%= ticket.quantity %>)
+                                            </li>
+                                            <% }) %>
+                                    </ul>
+                                    <% } else { %>
+                                        <p><em>No tickets added yet.</em></p>
+                                        <% } %>
+                                            <!-- Save and Done buttons -->
+                                            <div style="margin-top: 10px;">
+                                                <button type="submit" class="btn">Save</button>
+                                                <a href="/organiser/home" class="btn">Done</a>
+                                            </div>
+
+                    </form>
+
+                    <h3>Add Ticket</h3>
+
+                    <!-- Form to add a new ticket type -->
+                    <form action="/organiser/add-ticket/<%= event.event_id %>" method="post">
+                        <label>Type:</label>
+                        <select name="type" required>
+                            <option value="">Select type</option>
+                            <option value="Full price">Full Price</option>
+                            <option value="Member price">Member Discount</option>
+                            <option value="Student price">Student Discount</option>
+                        </select><br>
+
+                        <label>Price (SEK):</label>
+                        <input type="number" name="price" min="0" step="0.01" required><br>
+
+                        <label>Quantity:</label>
+                        <input type="number" name="quantity" min="1" max="100" step="1" required><br>
+
+                        <button type="submit" class="btn">Add Ticket</button>
+                    </form>
+
+                    <a href="/organiser/home" class="footer-link center">
+                        << Back to Organiser Home</a>
+</body>
+
+</html>

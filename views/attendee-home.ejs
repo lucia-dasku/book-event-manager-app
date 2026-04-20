@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bookstore Events – Attendee Home</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+    <%- include('add-ons') %>
+
+        <h1>
+            <%= site.name %>
+        </h1>
+        <p class="page-description">
+            Browse upcoming literary events across our bookstores.
+            <br>Click on an event to view full details and book your tickets.
+        </p>
+
+        <h2>Upcoming Events</h2>
+
+        <% if (events.length> 0) { %>
+            <ul>
+                <% events.forEach(event=> { %>
+                    <li>
+                        <p><strong>Title:</strong>
+                            <%= event.title %>
+                        </p>
+                        <p><strong>Date:</strong>
+                            <%= event.event_date %>
+                        </p>
+                        <p><strong>Venue:</strong>
+                            <%= event.venue_name %>
+                        </p>
+                        <p><strong>Address:</strong>
+                            <%= event.address %>, <%= event.city %>, <%= event.country %>
+                        </p>
+
+                        <% if (ticketMap[event.event_id] && ticketMap[event.event_id].length> 0) { %>
+                            <ul>
+                                <% ticketMap[event.event_id].forEach(ticket=> { %>
+                                    <li>
+                                        <%= ticket.type %>: <%= ticket.price %> SEK — <%= ticket.quantity %> available
+                                    </li>
+                                    <% }) %>
+                            </ul>
+
+                            <a href="/attendee/event/<%= event.event_id %>" class="btn">View Details & Book</a>
+                            <% } else { %>
+                                <p><em>Tickets coming soon.</em></p>
+                                <% } %>
+                    </li>
+                    <% }) %>
+            </ul>
+            <% } else { %>
+                <p><em>No published events available yet.</em></p>
+                <% } %>
+
+                    <a href="/" class="footer-link">
+                        << Back to Home</a>
+</body>
+
+</html>

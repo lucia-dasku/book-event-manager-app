@@ -1,0 +1,230 @@
+/* ====================
+   GENERAL LAYOUT & TEXT
+======================= */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+h2,
+h3 {
+    margin-top: 30px;
+    color: #165d2c;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.quote {
+    font-style: italic;
+    margin-top: 20px;
+    color: #444;
+}
+
+.page-description {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+/* ====================
+   LIST & ITEM STYLING
+======================= */
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background: #fff;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Add spacing between buttons/links in list items */
+li a,
+li form {
+    margin-right: 8px;
+}
+
+/* Spacing between stacked list items */
+li+li {
+    margin-top: 10px;
+}
+
+/* Link styling */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ====================
+   FORMS
+======================= */
+
+/* Form layout blocks (e.g. event creation or ticket form) */
+form.block-form {
+    margin-top: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+/* Inline forms (e.g. publish/delete next to edit link) */
+li form {
+    display: inline;
+    margin: 0;
+}
+
+form.block-form,
+.form-section {
+    background: #fdfdfd;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Input field styles, consistent across types */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+textarea,
+select {
+    width: 100%;
+    max-width: 400px;
+    padding: 8px;
+    margin: 8px 0 16px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+label {
+    font-weight: bold;
+}
+
+/* Horizontal layout for form fields */
+.form-row {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.form-row label,
+.form-row input,
+.form-row select {
+    flex: 1;
+    min-width: 150px;
+}
+
+/* ====================
+   BUTTON STYLES
+======================= */
+
+/* Unified button style */
+.btn,
+button.btn,
+a.btn {
+    background-color: #165d2c;
+    color: white;
+    padding: 10px 16px;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    border: none;
+    display: inline-block;
+    margin: 5px 8px 5px 0;
+    cursor: pointer;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.btn:hover,
+button.btn:hover,
+a.btn:hover {
+    background-color: #117c3d;
+}
+
+/* Ticket comfirmation*/
+.announce.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* Warning messages */
+.announce.warning {
+    background-color: #fdc1c6;
+    color: #6d161e;
+    border: 1px solid #f79fa7;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* ====================
+   HEADER STYLES
+======================= */
+
+/* Top banner*/
+.banner {
+    background-color: #165d2c;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Navigation bar*/
+.navbar {
+    background-color: #165d2c;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.navbar a {
+    color: white;
+    margin-left: 15px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+/* ====================
+   FOOTER 
+======================= */
+
+/* Spacing from content above */
+.footer-link {
+    display: inline-block;
+    margin-top: 40px;
+    font-weight: bold;
+}

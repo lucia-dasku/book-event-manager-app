@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= event.title %>
+    </title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+    <%- include('add-ons') %>
+
+        <h1>
+            <%= event.title %>
+        </h1>
+
+        <p>
+            <%= event.description %>
+        </p>
+        <p><strong>Venue:</strong>
+            <%= event.venue_name || "Will be added soon." %>
+        </p>
+
+        <% if (event.address && event.city && event.country) { %>
+            <p><strong>Address:</strong>
+                <%= event.address %>, <%= event.city %>, <%= event.country %>
+            </p>
+            <% } %>
+
+                <p><strong>Date:</strong>
+                    <%= event.event_date %>
+                </p>
+
+                <h2>Book Tickets</h2>
+
+                <!-- Success or error message after submitting form -->
+                <% if (successMessage) { %>
+                    <div class="announce success">
+                        <%= successMessage %>
+                    </div>
+                    <% } %>
+
+                        <% if (errorMessage) { %>
+                            <div class="announce warning">
+                                <%= errorMessage %>
+                            </div>
+                            <% } %>
+
+                                <!-- Ticket booking form -->
+                                <% if (tickets.length> 0) { %>
+                                    <form action="/attendee/event/<%= event.event_id %>" method="post">
+                                        <label>Your Name:</label><br>
+                                        <input type="text" name="attendee_name" required><br>
+
+                                        <label>Email:</label><br>
+                                        <input type="email" name="attendee_email" required><br>
+
+                                        <label>Ticket Type:</label><br>
+                                        <select name="ticket_type" required>
+                                            <% tickets.forEach(ticket=> { %>
+                                                <option value="<%= ticket.type %>">
+                                                    <%= ticket.type %> — <%= ticket.price %> SEK (Available: <%=
+                                                                ticket.quantity %>)
+                                                </option>
+                                                <% }) %>
+                                        </select><br>
+
+                                        <label>Quantity:</label><br>
+                                        <input type="number" name="quantity" min="1" value="1" required><br><br>
+
+                                        <button type="submit" class="btn">Book Now</button>
+                                    </form>
+                                    <% } else { %>
+                                        <p><em>No tickets available for this event yet.</em></p>
+                                        <% } %>
+
+                                            <a href="/attendee/home" class="footer-link center">
+                                                << Back to Attendee Home</a>
+</body>
+
+</html>
