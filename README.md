@@ -13,62 +13,53 @@ I built it as part of my University of London coursework (Database Networks and 
 
 ### How to run the project ###
 
-Install dependencies:
+- Install dependencies: ```npm install```
 
-```npm install```
+- Create the database:
 
-Create the database:
+  Mac / Linux:
+  ```npm run build-db```
+        
+  Windows:
+  ```npm run build-db-win```
 
-# Mac / Linux
-```npm run build-db```
+- Start the server: ```npm start```
 
-# Windows
-```npm run build-db-win```
-
-Start the server:
-
-```npm start```
-
-Open in browser:
-
-http://localhost:3000
-
-To reset database: 
-```npm run clean-db``` on Mac or Linux
-```npm run clean-db-win``` on Windows
-
-#### Folder Structure ####
-
-`/routes/`
-    `organiser.js` — Organiser routes and event/ticket logic.
-    `attendee.js` — Attendee routes and booking logic.
-
-`/views/`
-    `organiser-home.ejs` — The organiser dashboard to create, manage and published events.
-    `organiser-edit.ejs` — Form interface for editing an event and managing ticket types.
-    `attendee-home.ejs` — List of all published events available to book.
-    `attendee-event.ejs` — Booking form where attendee can purchase tickets for an event.
-    `main-home.ejs` — The landing page.
-
-`/public/`
-    `main.css` — Shared stylesheet across all pages, defining buttons, forms, spacing, and general design.
-
-`/db_schema.sql` — SQL script that builds the SQLite database.
-
-`/index.js` — Main app entry point. Sets Express, middleware, routes, and database connection.
-
-`/package.json` — Defines project dependencies and scripts.
-
-`/README.md` — Project documentation file.
+- Open in browser: http://localhost:3000
 
 
-#### Technical Summary ####
+To reset database:  
+
+Mac / Linux: 
+        ```npm run clean-db```  
+        
+Windows: 
+        ```npm run clean-db-win```
+
+
+### Folder Structure ###
+
+`/routes/`  
+    `organiser.js` — Event and ticket management.  
+    `attendee.js` — Booking logic.
+
+`/views/` — EJS templates (UI)  
+
+`/public/` — CSS
+
+`/db_schema.sql` — Database schema.
+
+`/index.js` — Main app entry point.
+
+`/package.json` — Dependencies and scripts.
+
+### Technical Summary ###
 
 - Backend: Node.js + Express
 - Templating: EJS (server-side rendering)
 - Database: SQLite3
 
-#### Future Improvements ####
+### Future Improvements ###
 
 - Organisers page: add login system. Show bookings statistics. 
 - Auto calculation for discounted price for member and student tickets.
